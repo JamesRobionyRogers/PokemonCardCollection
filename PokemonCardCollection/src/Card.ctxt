@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Card
+comment0.text=\ Card\ support\ class\ for\ CardCollection\r\n\ a\ Card\ contains\ an\ id,\ name,\ monetary\ value\ and\ a\ image\r\n\ \r\n\ @author\ James\ Robiony-Rogers\ \r\n@version\ 1st\ July\ 2021
+comment1.params=id\ name\ value\ imgFile
+comment1.target=Card(int,\ java.lang.String,\ int,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objs\ of\ the\ Card\ class\r\n\ @param\ id\ (int)\ -\ cards\ id\ number\r\n\ @param\ name\ (String)\ -\ cards\ name\r\n\ @param\ value\ (int)\ -\ cards\ monatary\ value\ \r\n@param\ imgFile\ (String)\ -\ cards\ img\ file\ path
+comment2.params=id\ name\ value
+comment2.target=Card(int,\ java.lang.String,\ int)
+comment2.text=\ Constructor\ overloading\ \r\n\ @param\ id\ (int)\ -\ cards\ id\ number\r\n\ @param\ name\ (String)\ -\ cards\ name\r\n@param\ value\ (int)\ -\ cards\ monatary\ value
+comment3.params=
+comment3.target=int\ getID()
+comment3.text=\ Getter\ Method\:\ Returning\ the\ cards\ id\ \r\n@return\ int\ -\ returns\ the\ cards\ ID
+comment4.params=
+comment4.target=java.lang.String\ getName()
+comment4.text=\ Getter\ Method\:\ Returning\ the\ cards\ name\ \r\n@return\ String\ -\ returns\ the\ cards\ name
+comment5.params=
+comment5.target=int\ getValue()
+comment5.text=\ Getter\ Method\:\ Returning\ the\ cards\ value\ \r\n@return\ int\ -\ returns\ the\ cards\ value
+comment6.params=
+comment6.target=java.lang.String\ getImgFile()
+comment6.text=\ Getter\ Method\:\ Returning\ the\ cards\ imgFile\ \r\n@return\ String\ -\ returns\ the\ cards\ imgFile\ path
+numComments=7

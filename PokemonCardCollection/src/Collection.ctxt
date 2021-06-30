@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Collection
+comment0.text=\ Collection\ support\ class\ for\ CollectionGUI\ \r\n\ A\ collection\ contains\ a\ range\ of\ card\ objs\ and\ deals\ with\ them\ \r\n\ Collection\ does\ not\ take\ any\ inital\ params\ \r\n\ \r\n\ @author\ James\ Robiony-Rogers\r\n@version\ 1st\ July\ 2021
+comment1.params=
+comment1.target=Collection()
+comment1.text=Constructor\:\ \ \ \ initialising\ the\ map,\ creating\ and\ adding\ cards\ to\ map
+comment2.params=
+comment2.target=java.util.HashMap\ getCollection()
+comment2.text=\ Getter\ Mathod\:\ Returning\ the\ Collection\ HashMap\ \r\n@return\ HashMap<Integer,\ Card>\ -\ returns\ the\ collection
+comment3.params=name\ value\ imgFile
+comment3.target=boolean\ addCard(java.lang.String,\ int,\ java.lang.String)
+comment3.text=\ Lets\ the\ user\ add\ a\ pokemon\ card\ to\ the\ collection\ \r\n\ @param\ name\ (String)\ -\ name\ of\ the\ card\ \r\n\ @param\ value\ (int)\ -\ value\ of\ the\ card\ \r\n\ @param\ imgFile\ (String)\ -\ img\ file\ name\ \r\n@return\ boolean\ -\ returns\ if\ the\ card\ is\ in\ the\ collection\ already
+comment4.params=name\ value
+comment4.target=boolean\ addCard(java.lang.String,\ int)
+comment4.text=\ Method\ overloading\ \r\n\ @param\ name\ (String)\ -\ name\ of\ the\ card\ \r\n\ @param\ value\ (int)\ -\ value\ of\ the\ card\ \r\n@return\ boolean\ -\ returns\ if\ the\ card\ is\ in\ the\ collection\ already
+numComments=5
