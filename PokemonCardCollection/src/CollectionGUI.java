@@ -19,8 +19,8 @@ public class CollectionGUI {
     // GUI: Card Image Fields
     private int imgLocX = 100; 
     private int imgLocY = 40;
-    private double WIDTH = 150;
-    private final double HEIGHT = (WIDTH * 1.3968);   // following the card ratio
+    private static final double WIDTH = 150;
+    private static final double HEIGHT = (WIDTH * 1.3968);        // card ratio 
     private String imgFolder = "img/";
 
     // GUI: Card Details Fields
@@ -59,7 +59,7 @@ public class CollectionGUI {
     /** GUI component of the addCard mathod */
     public void addCardGUI() {
         String addImg = ""; 
-        // Ask for the contacts details 
+        // Ask for the card's details 
         // TODO: Document the pre .trim() and post .trim()
         String name = UI.askString("Pokemon Cards Name: ").trim();              
         int value = UI.askInt("Card Value [rounded, no commers]:  $"); 
@@ -69,14 +69,16 @@ public class CollectionGUI {
             addImg = UI.askString("Would you like to add an image [Y/N]: ");
             System.out.println(addImg);
 
-        } while ( !addImg.equalsIgnoreCase("Y") && !addImg.equalsIgnoreCase("N") ); 
+        } while (!addImg.equalsIgnoreCase("Y") && 
+                 !addImg.equalsIgnoreCase("N")); 
         
 
         String imgFileName = Card.DEFAULT_CARD;    // setting the default img 
         
         // Resetting the img path for custom image is required 
         if (addImg.equalsIgnoreCase("Y")) {
-            imgFileName = UIFileChooser.open("Choose Image File");   // changes file name if user chooses an img file
+            // Change file name if user chooses an img file
+            imgFileName = UIFileChooser.open("Choose Image File");   
         }
     
         
@@ -107,12 +109,18 @@ public class CollectionGUI {
                 throw new ArithmeticException(); 
             }
 
-            // Means that the name is not being used already and card can be added to the collection
+            // Means no duplicate name & card can be added to collection 
             if (!inMap && inRange) {
                 // Add the new pokemon card to the collection
-                if (imgFileName.contains(".jpeg") || imgFileName.contains(".jpg") || imgFileName.contains(".png")) {
+                if (imgFileName.contains(".jpeg") || 
+                    imgFileName.contains(".jpg") || 
+                    imgFileName.contains(".png")) {
+
                     pkc.addCard(name, value, imgFileName);
-                } else {
+
+                } 
+                else 
+                {
                     UI.println("Invalid img file. Default image used."); 
                     pkc.addCard(name, value);
                 }
@@ -147,12 +155,12 @@ public class CollectionGUI {
         for (int cardID : collection.keySet()) {
             
             // Setting pkCard to the itterated card from the collection
-            Card pkCard = collection.get(cardID);   
+            Card tempPkCard = collection.get(cardID);   
 
             // Printing the deaild to the console 
-            UI.println("ID: " + pkCard.getID()); 
-            UI.println(pkCard.getName()); 
-            UI.println("Value: \t$" + pkCard.getValue()); 
+            UI.println("ID: " + tempPkCard.getID()); 
+            UI.println(tempPkCard.getName()); 
+            UI.println("Value: \t$" + tempPkCard.getValue()); 
             UI.println("");     // formatting
         }
 
@@ -161,20 +169,20 @@ public class CollectionGUI {
 
     /** Finds a Pokemon Card of a given name and displays the image and details
      * on the GUI
-     * @param cardName (String) - textField returns the text inputted into it (intended to be the contacts name) */
+     * @param cardName (String) - textField returns the text inputted into it */
     public void findCardGUI(String cardName) {
         
-        boolean inMap = false;      // conditional vairbale for if a cards name is present
+        boolean inMap = false;      // conditional var for duplicate card name
 
         // Setting collection to the cardMap for clean code
         HashMap<Integer, Card> collection = pkc.getCollection();
 
-        // Itterating through all th cards in the collection and checking the name 
+        // Itterating through all cards in the collection and check the name 
         for (int cardID : collection.keySet()) {
             // Setting pkCard to the itterated card from the collection
             Card tempPkCard = collection.get(cardID); 
 
-            // Checking if the contacts name is equal to the input 
+            // Checking if the card's name is equal to the input 
             if (tempPkCard.getName().equalsIgnoreCase(cardName)) {
                 inMap = true; 
 
@@ -190,35 +198,39 @@ public class CollectionGUI {
         }
         // After itterating and still not in collection
         if (!inMap) {
-            UI.println("Sorry but the Pokemon Card you were looking for was not found.");
-            UI.println("Please check your spelling and then try again.");
+            UI.println(
+                "\nThe Pokemon Card you were looking for was not found.");
+            UI.println("Please check your spelling and then try again.\n");
         }
     }
 
     
     /** Displays the current Pokemon Cards image on the GUI 
-     * @param Card pkCard - the current card is passed through to use the needed details */
-    public void displayCard(Card pkCard) {
-        String path = this.imgFolder + pkCard.getImgFile(); 
+     * @param tempPkCard (Card) - current card is passed through for details */
+    public void displayCard(Card tempPkCard) {
+        String path = this.imgFolder + tempPkCard.getImgFile(); 
 
         // TODO: Account for a null getImgFile() string (occurs when you click cancel on the the choose img screen)
 
         // IF the image is located somewhere other than the img folder 
-        if (pkCard.getImgFile().contains(":")) {
-            UI.drawImage(pkCard.getImgFile(), this.imgLocX, this.imgLocY, WIDTH, HEIGHT); 
-            System.out.println("Path: " + pkCard.getImgFile());         
-        } else {
+        if (tempPkCard.getImgFile().contains(":")) {
+            UI.drawImage(tempPkCard.getImgFile(), this.imgLocX, this.imgLocY, 
+                                                                WIDTH, HEIGHT); 
+            System.out.println("Path: " + tempPkCard.getImgFile());         
+        } 
+        else 
+        {
             UI.drawImage(path, this.imgLocX, this.imgLocY, WIDTH, HEIGHT);
             System.out.println("Path: " + path);
         }
     }
     
     /** Displays the current Pokemon Cards details on the GUI
-     * @param Card pkCard - the current card is passed through to use the needed details */
-    public void displayDetails(Card pkCard) {
+     * @param tempPkCard (Card) - current card is passed through for details */
+    public void displayDetails(Card tempPkCard) {
         // Setting vairable for cleaner code 
-        String name = pkCard.getName();
-        String value = "$" + Integer.toString(pkCard.getValue()); 
+        String name = tempPkCard.getName();
+        String value = "$" + Integer.toString(tempPkCard.getValue()); 
 
         // Drawing etails to the GUI 
         UI.drawString(name, this.leftLocX, this.nameLocY);
@@ -236,10 +248,10 @@ public class CollectionGUI {
         // Clearing the area using a white rect 
         UI.setColor(Color.white); 
         UI.fillRect(topLeftX, topLeftY, totalWidth, totalHeight);
-        UI.setColor(Color.black);       // setting colour back for so text is readable 
+        UI.setColor(Color.black);       // setting colour back  
     }
 
-    /** Draws a rect over the Pokemon Cards details, hiding them from the user */
+    /** Draws a rect over the Pokemon Cards details, hiding them from the user*/
     public void clearDetails() {
         // Defigning the area to hide
         double topLeftX = (this.imgLocX - 1);
@@ -260,7 +272,8 @@ public class CollectionGUI {
             System.out.println("Hide: " + this.hide);
             System.out.println("Card" + this.pkCard.getName()); 
 
-            this.displayDetails(this.pkCard);       // print back the details of the current card
+            // Printing back the details of the current card
+            this.displayDetails(this.pkCard);       
         }
 
         else {
@@ -271,9 +284,9 @@ public class CollectionGUI {
     }
 
     /** doMouse
-     * @param String action - Passed from the mouseListener
-     * @param double x - x pos of mouse passed from the mouseListener
-     * @param double y - y pos of mouse passed from the mouseListener */
+     * @param action (String) - Passed from the mouseListener
+     * @param x (double) - x pos of mouse passed from the mouseListener
+     * @param y (double) - y pos of mouse passed from the mouseListener */
     public void doMouse(String action, double x, double y) { 
 
         // Checking if card has been clicked 
@@ -288,7 +301,10 @@ public class CollectionGUI {
     }
 
 
+    /** Running an instance of the CollectionGUI 
+     * @param args (String[]) - Standard */
     public static void main(String[] args) throws Exception {
         new CollectionGUI();        // running the constructor
     }
+
 }
