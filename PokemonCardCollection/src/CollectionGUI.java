@@ -37,8 +37,6 @@ public class CollectionGUI {
         // Initialising and setting properties
         pkc = new Collection();     // initialising the collection obj 
 
-        // TODO: Un comment all of the UI.
-
         // UI.initialise();            // initialising the ECS100 UI lib
         // UI.setColor(Color.black); 
         // UI.setFontSize(FONT_SIZE);
@@ -65,7 +63,6 @@ public class CollectionGUI {
         int value = UI.askInt("Card Value [rounded, no commers]:  $"); 
         // Continues to ask the user to add an img until a Y or N is provided 
         do { 
-            // TODO: Working on Y/N do while 
             addImg = UI.askString("Would you like to add an image [Y/N]: ");
             System.out.println(addImg);
 
@@ -79,6 +76,12 @@ public class CollectionGUI {
         if (addImg.equalsIgnoreCase("Y")) {
             // Change file name if user chooses an img file
             imgFileName = UIFileChooser.open("Choose Image File");   
+
+            // Default card img if user cancels selecting an img 
+            // TODO: Document this with testing
+            if (imgFileName == null) {
+                imgFileName = Card.DEFAULT_CARD; 
+            }
         }
     
         
@@ -209,8 +212,6 @@ public class CollectionGUI {
      * @param tempPkCard (Card) - current card is passed through for details */
     public void displayCard(Card tempPkCard) {
         String path = this.imgFolder + tempPkCard.getImgFile(); 
-
-        // TODO: Account for a null getImgFile() string (occurs when you click cancel on the the choose img screen)
 
         // IF the image is located somewhere other than the img folder 
         if (tempPkCard.getImgFile().contains(":")) {

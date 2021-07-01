@@ -16,7 +16,11 @@ public class Card {
     // TODO: specify the absolute path for home computer 
     // private static String abPath = "C:\\Users\\James Robiony-Rogers\\OneDrive - Onslow College\\2021 Yr 13\\13DTC\\2021-06-24 - Assessment\\PokemonCardCollection\\src\\img\\default-card.png";
     // public static final String DEFAULT_CARD = abPath;
-    public static final String DEFAULT_CARD = "default-card.png"; // default 
+    /** Default card img file */
+    public static final String DEFAULT_CARD = "default-card.png"; 
+    
+    
+    
     /**
      * Constructor for objs of the Card class
      * @param id (int) - cards id number
